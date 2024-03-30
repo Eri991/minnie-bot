@@ -28,7 +28,7 @@ async def d(ctx,n):
                         rolls.append(random.randint(1, n))
                 roll = random.choice(rolls)
                 desvio = ''
-                if n <= 13:
+                if n <= 13 and n >= 10:
                         if roll < 6:
                                 desvio = 'Você foi atingido!'
                         elif roll >= 6:
@@ -77,13 +77,7 @@ async def clear(ctx, amount):
 
 @bot.command()
 async def choose(ctx,*, text):
-        args = []
-        while text:
-                arg, _, text = text.partition(",")
-                args.append(arg)
-                if text.count(",") == 0:
-                        args.append(text)
-                        break
+        args = text.split(",")
         choice = random.choice(args)
         choice = choice.lstrip()
         await ctx.send(f"[ :brain: ] Eu escolhi... **{choice}**!")
